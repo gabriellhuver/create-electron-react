@@ -1,14 +1,14 @@
 {
-  "name": "create-react-library",
-  "version": "2.6.7",
-  "description": "CLI for easily bootstrapping modern react libraries",
-  "repository": "transitive-bullshit/create-react-library",
-  "author": "Travis Fischer <travis@automagical.ai>",
+  "name": "create-electron-react",
+  "version": "0.0.1",
+  "description": "A CLI for Electron & React.js quick start boilerplate, inspired by electron-vue.",
+  "repository": "zenghongtu/create-electron-react",
+  "author": "zenghongtu <zenghongtu@gmail.com>",
   "main": "index.js",
   "license": "MIT",
   "reveal": true,
   "bin": {
-    "create-react-library": "index.js"
+    "create-electron-react": "index.js"
   },
   "scripts": {
     "start": "node .",
@@ -25,7 +25,6 @@
     "react",
     "create-react-app",
     "cli",
-    "babel",
     "publish"
   ],
   "dependencies": {
