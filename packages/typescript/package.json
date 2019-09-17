@@ -1,134 +1,135 @@
 {
-    "name": "{{name}}",
-    "version": "{{version}}",
-    "author": "{{author}}",
-    "description": "{{description}}",
-    "main": "./dist/electron/main.js",
-    "scripts": {
-        "build": "node .electron-react/build.js && electron-builder",
-        "build:dir": "node .electron-react/build.js && electron-builder --dir",
-        "build:clean": "cross-env BUILD_TARGET=clean node .electron-react/build.js",
-        "build:web": "cross-env BUILD_TARGET=web node .electron-react/build.js",
-        "dev": "cross-env NODE_ENV=development node .electron-react/dev-runner.js",
-        "lint": "eslint --ext .ts,.tsx -f ./node_modules/eslint-friendly-formatter src",
-        "lint:fix": "eslint --ext .ts,.tsx -f ./node_modules/eslint-friendly-formatter --fix src",
-        "pack": "{{manager}} run pack:main && {{manager}} run pack:renderer",
-        "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.main.config.js",
-        "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.renderer.config.js",
-        "postinstall": "{{manager}} run lint:fix",
-        "test": "{{manager}} run test:unit && {{manager}} run test:e2e",
-        "test:unit": "jest -c jest.unit.config.js",
-        "test:e2e": "{{manager}} run pack && jest -c jest.e2e.config.js"
+  "name": "electron-react",
+  "version": "0.0.1",
+  "author": "jasonzeng <jason.zeng@ximalaya.com>",
+  "description": "An electron-react project",
+  "license": "MIT",
+  "main": "./dist/electron/main.js",
+  "scripts": {
+    "build": "node .electron-react/build.js && electron-builder",
+    "build:dir": "node .electron-react/build.js && electron-builder --dir",
+    "build:clean": "cross-env BUILD_TARGET=clean node .electron-react/build.js",
+    "build:web": "cross-env BUILD_TARGET=web node .electron-react/build.js",
+    "dev": "node .electron-react/dev-runner.js",
+    "lint": "eslint --ext .ts,.tsx -f ./node_modules/eslint-friendly-formatter src",
+    "lint:fix": "eslint --ext .ts,.tsx -f ./node_modules/eslint-friendly-formatter --fix src",
+    "pack": "npm run pack:main && npm run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.renderer.config.js",
+    "postinstall": "npm run lint:fix",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "jest -c jest.unit.config.js",
+    "test:e2e": "npm run pack && jest -c jest.e2e.config.js"
+  },
+  "build": {
+    "productName": "electron-react",
+    "appId": "com.example.yourapp",
+    "directories": {
+      "output": "build"
     },
-    "build": {
-        "productName": "{{name}}",
-        "appId": "{{app_id}}",
-        "directories": {
-            "output": "build"
+    "files": [
+      "dist/electron/**/*"
+    ],
+    "dmg": {
+      "contents": [
+        {
+          "x": 410,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
         },
-        "files": [
-            "dist/electron/**/*"
-        ],
-        "dmg": {
-            "contents": [
-                {
-                    "x": 410,
-                    "y": 150,
-                    "type": "link",
-                    "path": "/Applications"
-                },
-                {
-                    "x": 130,
-                    "y": 150,
-                    "type": "file"
-                }
-            ]
-        },
-        "mac": {
-            "icon": "build/icons/icon.icns"
-        },
-        "win": {
-            "icon": "build/icons/icon.ico"
-        },
-        "linux": {
-            "icon": "build/icons"
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
         }
+      ]
     },
-    "dependencies": {
-        "react": "^16.9.0",
-        "react-dom": "^16.9.0"
+    "mac": {
+      "icon": "build/icons/icon.icns"
     },
-    "devDependencies": {
-        "@babel/core": "^7.6.0",
-        "@babel/plugin-proposal-class-properties": "^7.5.5",
-        "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-        "@babel/plugin-transform-runtime": "^7.6.0",
-        "@babel/preset-env": "^7.6.0",
-        "@babel/preset-react": "^7.0.0",
-        "@babel/preset-typescript": "^7.6.0",
-        "@types/electron": "^1.6.10",
-        "@types/enzyme": "^3.10.3",
-        "@types/enzyme-adapter-react-16": "^1.0.5",
-        "@types/jest": "^24.0.18",
-        "@types/node": "^12.7.4",
-        "@types/react": "^16.9.2",
-        "@types/react-dom": "^16.9.0",
-        "@typescript-eslint/eslint-plugin": "^2.2.0",
-        "@typescript-eslint/parser": "^2.2.0",
-        "ajv": "^6.10.2",
-        "babel-loader": "^8.0.6",
-        "babel-plugin-istanbul": "^5.2.0",
-        "babel-register": "^6.26.0",
-        "cfonts": "^2.4.5",
-        "chai": "^4.2.0",
-        "chalk": "^2.4.2",
-        "copy-webpack-plugin": "^5.0.4",
-        "cross-env": "^5.2.1",
-        "css-loader": "^3.2.0",
-        "del": "^5.1.0",
-        "devtron": "^1.4.0",
-        "electron": "^6.0.8",
-        "electron-builder": "^21.2.0",
-        "electron-debug": "^3.0.1",
-        "electron-devtools-installer": "^2.2.4",
-        "enzyme": "^3.10.0",
-        "enzyme-adapter-react-16": "^1.14.0",
-        "enzyme-to-json": "^3.4.0",
-        "eslint": "^6.3.0",
-        "eslint-config-standard": "^14.1.0",
-        "eslint-friendly-formatter": "^4.0.1",
-        "eslint-loader": "^3.0.0",
-        "eslint-plugin-html": "^6.0.0",
-        "eslint-plugin-import": "^2.18.2",
-        "eslint-plugin-node": "^10.0.0",
-        "eslint-plugin-promise": "^4.2.1",
-        "eslint-plugin-react": "^7.14.3",
-        "eslint-plugin-standard": "^4.0.1",
-        "file-loader": "^4.2.0",
-        "fork-ts-checker-webpack-plugin": "^1.5.0",
-        "html-webpack-plugin": "^3.2.0",
-        "inject-loader": "^4.0.1",
-        "jest": "^24.9.0",
-        "less-loader": "^5.0.0",
-        "mini-css-extract-plugin": "^0.8.0",
-        "multispinner": "^0.2.1",
-        "node-loader": "^0.6.0",
-        "node-sass": "^4.12.0",
-        "optimize-css-assets-webpack-plugin": "^5.0.3",
-        "sass-loader": "^8.0.0",
-        "spectron": "^8.0.0",
-        "style-loader": "^1.0.0",
-        "terser-webpack-plugin": "^2.0.1",
-        "ts-jest": "^24.0.2",
-        "ts-loader": "^6.1.0",
-        "tslint": "^5.20.0",
-        "typescript": "^3.6.3",
-        "url-loader": "^2.1.0",
-        "webpack": "^4.39.3",
-        "webpack-cli": "^3.3.8",
-        "webpack-dev-server": "^3.8.0",
-        "webpack-hot-middleware": "^2.25.0",
-        "webpack-merge": "^4.2.2"
+    "win": {
+      "icon": "build/icons/icon.ico"
+    },
+    "linux": {
+      "icon": "build/icons"
     }
+  },
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.6.0",
+    "@types/electron": "^1.6.10",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.4",
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
+    "ajv": "^6.10.2",
+    "babel-loader": "^8.0.6",
+    "babel-plugin-istanbul": "^5.2.0",
+    "babel-register": "^6.26.0",
+    "cfonts": "^2.4.5",
+    "chai": "^4.2.0",
+    "chalk": "^2.4.2",
+    "copy-webpack-plugin": "^5.0.4",
+    "cross-env": "^5.2.1",
+    "css-loader": "^3.2.0",
+    "del": "^5.1.0",
+    "devtron": "^1.4.0",
+    "electron": "^6.0.8",
+    "electron-builder": "^21.2.0",
+    "electron-debug": "^3.0.1",
+    "electron-devtools-installer": "^2.2.4",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "enzyme-to-json": "^3.4.0",
+    "eslint": "^6.3.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^3.0.0",
+    "eslint-plugin-html": "^6.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1",
+    "file-loader": "^4.2.0",
+    "fork-ts-checker-webpack-plugin": "^1.5.0",
+    "html-webpack-plugin": "^3.2.0",
+    "inject-loader": "^4.0.1",
+    "jest": "^24.9.0",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "multispinner": "^0.2.1",
+    "node-loader": "^0.6.0",
+    "node-sass": "^4.12.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "sass-loader": "^8.0.0",
+    "spectron": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^2.0.1",
+    "ts-jest": "^24.0.2",
+    "ts-loader": "^6.1.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3",
+    "url-loader": "^2.1.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-hot-middleware": "^2.25.0",
+    "webpack-merge": "^4.2.2"
+  }
 }

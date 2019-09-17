@@ -6,7 +6,7 @@ const cpFile = require('cp-file')
 
 const rootPath = path.resolve(__dirname, '../')
 const sourceDir = path.join(rootPath, 'packages')
-const destDir = path.join(rootPath, 'template')
+const destDir = path.join(rootPath, 'templates')
 
 const ignoreRule = [
   '.DS_Store',

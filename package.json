@@ -1,7 +1,7 @@
 {
   "name": "create-electron-react",
   "version": "0.0.1",
-  "description": "A CLI for Electron & React.js quick start boilerplate, inspired by electron-vue.",
+  "description": "A CLI for Electron & React.js quick start boilerplate.",
   "repository": "zenghongtu/create-electron-react",
   "author": "zenghongtu <zenghongtu@gmail.com>",
   "main": "index.js",
@@ -14,7 +14,8 @@
     "start": "node .",
     "lint": "standard *.js lib/*.js",
     "lint:fix": "standard --fix *.js lib/*.js",
-    "test": "ava -v *.test.js lib/*.test.js"
+    "test": "ava -v *.test.js lib/*.test.js",
+    "prepublish": "node ./scripts/genTemplateFiles.js"
   },
   "engines": {
     "node": ">=8",
