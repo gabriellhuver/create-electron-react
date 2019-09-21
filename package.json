@@ -1,7 +1,7 @@
 {
   "name": "create-electron-react",
-  "version": "0.0.1",
-  "description": "A CLI for Electron & React.js quick start boilerplate.",
+  "version": "0.0.2",
+  "description": "A CLI for Electron & React.js to quick start boilerplate.",
   "repository": "zenghongtu/create-electron-react",
   "author": "zenghongtu <zenghongtu@gmail.com>",
   "main": "index.js",
@@ -15,7 +15,10 @@
     "lint": "standard *.js lib/*.js",
     "lint:fix": "standard --fix *.js lib/*.js",
     "test": "ava -v *.test.js lib/*.test.js",
-    "prepublish": "node ./scripts/genTemplateFiles.js"
+    "prepublish": "node ./scripts/genTemplateFiles.js",
+    "patch": "yarn version --patch",
+    "minor": "yarn version --minor",
+    "major": "yarn version --major"
   },
   "engines": {
     "node": ">=8",
@@ -26,7 +29,13 @@
     "react",
     "create-react-app",
     "cli",
-    "publish"
+    "boilerplate",
+    "react",
+    "redux",
+    "sass",
+    "webpack",
+    "hot",
+    "reload"
   ],
   "dependencies": {
     "chalk": "^2.4.2",

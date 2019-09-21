@@ -1,4 +1,4 @@
 # create-electron-react
 
-> A CLI for Electron & React.js quick start boilerplate.
+> A CLI for Electron & React.js to quick start boilerplate.
 

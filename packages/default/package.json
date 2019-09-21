@@ -1,9 +1,9 @@
 {
-  "name": "electron-react",
-  "version": "0.0.1",
-  "author": "jasonzeng <jason.zeng@ximalaya.com>",
-  "description": "An electron-react project",
-  "license": null,
+  "name": "{{name}}",
+  "version": "{{version}}",
+  "author": "{{author}}",
+  "description": "{{description}}",
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-react/build.js && electron-builder",
@@ -13,17 +13,17 @@
     "dev": "node .electron-react/dev-runner.js",
     "lint": "eslint --ext .js,.jsx -f ./node_modules/eslint-friendly-formatter src",
     "lint:fix": "eslint --ext .js,.jsx -f ./node_modules/eslint-friendly-formatter --fix src",
-    "pack": "npm run pack:main && npm run pack:renderer",
+    "pack": "{{manager}} run pack:main && {{manager}} run pack:renderer",
     "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.main.config.js",
     "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config .electron-react/webpack.renderer.config.js",
-    "postinstall": "npm run lint:fix",
-    "test": "npm run test:unit && npm run test:e2e",
+    "postinstall": "{{manager}} run lint:fix",
+    "test": "{{manager}} run test:unit && {{manager}} run test:e2e",
     "test:unit": "jest -c jest.unit.config.js",
-    "test:e2e": "npm run pack && jest -c jest.e2e.config.js"
+    "test:e2e": "{{manager}} run pack && jest -c jest.e2e.config.js"
   },
   "build": {
-    "productName": "electron-react",
-    "appId": "com.example.yourapp",
+    "productName": "{{name}}",
+    "appId": "{{app_id}}",
     "directories": {
       "output": "build"
     },

@@ -19,6 +19,7 @@ const ignoreRule = [
   'npm-debug.log',
   'npm-debug.log.*',
   'thumbs.db',
+  '*.lock',
   '!.gitkeep'
 ]
 
@@ -84,7 +85,8 @@ const genTemplateFiles = async opts => {
     await cpFile(file, file.replace(sourcePath, distPath))
   }
 
-  console.log(`copy ${name} done.`)
+  console.log(`copy [${name}] done.`)
 }
 
+genTemplateFiles({ name: 'default' })
 genTemplateFiles({ name: 'typescript' })
