@@ -26,16 +26,6 @@ const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
 const isNotProd = process.env.NODE_ENV !== 'production'
 
-const miniCssExtractLoader = {
-  loader: MiniCssExtractPlugin.loader,
-  options: {
-    // only enable hot in development
-    hmr: isDev,
-    // if hmr does not work, this is a forceful method.
-    reloadAll: true
-  }
-}
-
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
@@ -50,30 +40,46 @@ let rendererConfig = {
     rules: [
       {
         test: /\.scss$/,
-        use: [miniCssExtractLoader, 'css-loader', 'sass-loader'],
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'sass-loader'
+        ],
         include: /src\/renderer/
       },
       {
         test: /\.sass$/,
-        use: [miniCssExtractLoader, 'css-loader', 'sass-loader?indentedSyntax'],
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'sass-loader?indentedSyntax'
+        ],
         include: /src\/renderer/
       },
       {
         test: /\.less$/,
-        use: [miniCssExtractLoader, 'css-loader', 'less-loader'],
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader',
+          'less-loader'
+        ],
         include: /src\/renderer/
       },
       {
         test: /\.css$/,
-        use: [miniCssExtractLoader, 'css-loader'],
+        use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+          'css-loader'
+        ],
         include: /src\/renderer/
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        loader: 'ts-loader',
-        options: {
-          transpileOnly: true,
-          experimentalWatchApi: true
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
         },
         exclude: /node_modules/
       },
@@ -116,7 +122,6 @@ let rendererConfig = {
     __filename: isNotProd
   },
   plugins: [
-    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new ForkTsCheckerWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -142,6 +147,7 @@ let rendererConfig = {
   },
   resolve: {
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       '@': path.join(__dirname, '../src/renderer')
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.node']
@@ -174,6 +180,7 @@ if (isProd) {
   }
 
   rendererConfig.plugins.push(
+    new MiniCssExtractPlugin({ filename: 'styles.css' }),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, '../static'),

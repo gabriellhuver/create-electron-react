@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from './assets/logo.svg'
 import './App.css'
+import { hot } from 'react-hot-loader/root'
 import { remote } from 'electron'
 
 const App: React.FC = () => {
@@ -60,4 +61,4 @@ const App: React.FC = () => {
   )
 }
 
-export default App
+export default hot(App)
