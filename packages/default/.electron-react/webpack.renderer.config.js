@@ -66,7 +66,12 @@ let rendererConfig = {
 
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
+        },
         exclude: /node_modules/
       },
       {
@@ -131,6 +136,7 @@ let rendererConfig = {
   },
   resolve: {
     alias: {
+      'react-dom': '@hot-loader/react-dom',
       '@': path.join(__dirname, '../src/renderer')
     },
     extensions: ['.js', '.jsx', '.json', '.css', '.node']

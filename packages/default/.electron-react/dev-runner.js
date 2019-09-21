@@ -70,6 +70,7 @@ function startRenderer() {
     })
 
     const server = new WebpackDevServer(compiler, {
+      hot: true,
       contentBase: path.join(__dirname, '../'),
       quiet: true,
       before(app, ctx) {
