@@ -20,10 +20,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  */
 let whiteListedModules = ['react']
 
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = process.env.NODE_ENV === 'production'
+const isNotProd = process.env.NODE_ENV !== 'production'
+
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
   entry: {
-    renderer: path.join(__dirname, '../src/renderer/index.js')
+    renderer: path.join(__dirname, '../src/renderer/index.jsx')
   },
   externals: [
     ...Object.keys(dependencies || {}).filter(
@@ -100,8 +104,8 @@ let rendererConfig = {
     ]
   },
   node: {
-    __dirname: process.env.NODE_ENV !== 'production',
-    __filename: process.env.NODE_ENV !== 'production'
+    __dirname: isNotProd,
+    __filename: isNotProd
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: 'styles.css' }),
@@ -113,10 +117,9 @@ let rendererConfig = {
         removeAttributeQuotes: true,
         removeComments: true
       },
-      nodeModules:
-        process.env.NODE_ENV !== 'production'
-          ? path.resolve(__dirname, '../node_modules')
-          : false
+      nodeModules: isNotProd
+        ? path.resolve(__dirname, '../node_modules')
+        : false
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
@@ -138,7 +141,7 @@ let rendererConfig = {
 /**
  * Adjust rendererConfig for development settings
  */
-if (process.env.NODE_ENV !== 'production') {
+if (isNotProd) {
   rendererConfig.plugins.push(
     new webpack.DefinePlugin({
       __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
@@ -149,7 +152,7 @@ if (process.env.NODE_ENV !== 'production') {
 /**
  * Adjust rendererConfig for production settings
  */
-if (process.env.NODE_ENV === 'production') {
+if (isProd) {
   rendererConfig.devtool = ''
 
   rendererConfig.plugins.push(

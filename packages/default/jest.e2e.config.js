@@ -8,9 +8,9 @@ module.exports = {
         "<rootDir>/test/e2e"
     ],
     "transform": {
-        "^.+\\.tsx?$": "ts-jest"
+        "^.+\\.jsx?$": "babel-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$",
     "moduleFileExtensions": [
         "ts",
         "tsx",
