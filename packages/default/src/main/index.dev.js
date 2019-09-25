@@ -19,7 +19,7 @@ require('electron').app.on('ready', () => {
   installExtension
     .default([
       installExtension.REACT_DEVELOPER_TOOLS,
-      installExtension.REDUX_DEVTOOLS
+      installExtension.REACT_PERF
     ])
     .then(() => {})
     .catch((er) => {
