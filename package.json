@@ -15,7 +15,7 @@
     "lint": "standard *.js lib/*.js",
     "lint:fix": "standard --fix *.js lib/*.js",
     "test": "ava -v *.test.js lib/*.test.js",
-    "prepublish": "node ./scripts/genTemplateFiles.js",
+    "prepublishOnly": "node ./scripts/genTemplateFiles.js",
     "patch": "yarn version --patch",
     "minor": "yarn version --minor",
     "major": "yarn version --major"
