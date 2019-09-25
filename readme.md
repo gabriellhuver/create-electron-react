@@ -22,7 +22,7 @@
 - ESLint \(with support for [`standard`](https://github.com/feross/standard) and [`airbnb-base`](https://github.com/airbnb/javascript)\)\*
 - Unit Testing with [Jest](https://facebook.github.io/jest/)
 - E2E Testing with [Jest](https://facebook.github.io/jest/) + [spectron](https://github.com/electron/spectron#readme)
-- Base on the latest version ([React](https://github.com/facebook/react/) v16.9.0 && [Electron](https://github.com/electron/electron) v6.0.8)
+- Base on the latest version ([React](https://github.com/facebook/react/) v16.9.0 && [Electron](https://github.com/electron/electron) v6.0.10)
 
 ## Preview
 
