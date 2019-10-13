@@ -22,7 +22,7 @@
 - ESLint \(with support for [`standard`](https://github.com/feross/standard) and [`airbnb-base`](https://github.com/airbnb/javascript)\)\*
 - Unit Testing with [Jest](https://facebook.github.io/jest/)
 - E2E Testing with [Jest](https://facebook.github.io/jest/) + [spectron](https://github.com/electron/spectron#readme)
-- Base on the latest version ([React](https://github.com/facebook/react/) v16.9.0 && [Electron](https://github.com/electron/electron) v6.0.10)
+- Base on the latest version ([React](https://github.com/facebook/react/) v16.10.2 && [Electron](https://github.com/electron/electron) v6.0.12)
 
 ## Preview
 
@@ -40,6 +40,18 @@ npm install -g create-electron-react
 
 ```bash
 npx create-electron-react
+```
+
+## CLI Options
+
+```
+? Application Name
+? Application Id
+? Application Version
+? Project Description
+? Author
+? Package Manager
+? Template
 ```
 
 _([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
