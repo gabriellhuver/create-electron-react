@@ -24,7 +24,8 @@
       ]
     },
     "renderer": {
-      "presets": ["@babel/preset-react"]
+      "presets": ["@babel/preset-react"],
+      "plugins": ["react-hot-loader/babel"]
     },
     "web": {
       "presets": ["@babel/preset-env", "@babel/preset-react"]

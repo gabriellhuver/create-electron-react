@@ -8,7 +8,7 @@ const webpack = require('webpack')
 
 const BabiliWebpackPlugin = require('babili-webpack-plugin')
 
-let whiteListedModules = ['react']
+const whiteListedModules = ['react', 'react-dom']
 
 const externals = [
   ...Object.keys(devDependencies || {}),
@@ -37,8 +37,13 @@ let mainConfig = {
       },
       {
         test: /\.js$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
+        },
       },
       {
         test: /\.node$/,
@@ -57,6 +62,7 @@ let mainConfig = {
   },
   plugins: [new webpack.NoEmitOnErrorsPlugin()],
   resolve: {
+    modules: ['src', 'node_modules'],
     extensions: ['.js', '.json', '.node']
   },
   target: 'electron-main'

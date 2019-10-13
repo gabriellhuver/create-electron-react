@@ -10,7 +10,7 @@ const App = () => {
   const platform = require('os').platform()
   const version = require('../../package.json').version
 
-  const handleLinkClick = (e) => {
+  const handleLinkClick = e => {
     e.preventDefault()
     remote.shell.openExternal(e.currentTarget.href)
   }
