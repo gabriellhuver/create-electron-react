@@ -1,6 +1,6 @@
 {
   "name": "create-electron-react",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A CLI for Electron & React.js to quick start boilerplate.",
   "repository": "zenghongtu/create-electron-react",
   "author": "zenghongtu <zenghongtu@gmail.com>",
