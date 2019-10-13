@@ -20,7 +20,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
  * that provide pure *.vue files that need compiling
  * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
  */
-const whiteListedModules = ['react']
+const whiteListedModules = ['react', 'react-dom']
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = process.env.NODE_ENV === 'production'
@@ -146,8 +146,8 @@ let rendererConfig = {
     path: path.join(__dirname, '../dist/electron')
   },
   resolve: {
+    modules: ['src', 'node_modules'],
     alias: {
-      'react-dom': '@hot-loader/react-dom',
       '@': path.join(__dirname, '../src/renderer')
     },
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css', '.node']

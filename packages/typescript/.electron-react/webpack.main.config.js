@@ -8,7 +8,7 @@ const webpack = require('webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 
-let whiteListedModules = ['react']
+const whiteListedModules = ['react', 'react-dom']
 
 const externals = [
   ...Object.keys(devDependencies || {}),
@@ -53,6 +53,7 @@ let mainConfig = {
     new webpack.NoEmitOnErrorsPlugin()
   ],
   resolve: {
+    modules: ['src', 'node_modules'],
     extensions: ['.js', '.ts', '.json', '.node']
   },
   target: 'electron-main'

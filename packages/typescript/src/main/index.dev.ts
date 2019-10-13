@@ -17,10 +17,7 @@ require('electron').app.on('ready', () => {
   let installExtension = require('electron-devtools-installer')
 
   installExtension
-    .default([
-      installExtension.REACT_DEVELOPER_TOOLS,
-      installExtension.REACT_PERF
-    ])
+    .default([installExtension.REACT_DEVELOPER_TOOLS])
     .then(() => {})
     .catch((err: Error) => {
       console.log('Unable to install devtools: \n', err)
