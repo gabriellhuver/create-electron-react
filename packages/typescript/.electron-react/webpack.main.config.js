@@ -1,27 +1,28 @@
-'use strict'
+'use strict';
 
-process.env.BABEL_ENV = 'main'
+process.env.BABEL_ENV = 'main';
 
-const path = require('path')
-const { dependencies, devDependencies } = require('../package.json')
-const webpack = require('webpack')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
+const path = require('path');
+const { dependencies, devDependencies } = require('../package.json');
+const webpack = require('webpack');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const whiteListedModules = ['react', 'react-dom']
+// https://github.com/zenghongtu/create-electron-react/issues/3
+// const whiteListedModules = ['']
 
-const externals = [
-  ...Object.keys(devDependencies || {}),
-  ...Object.keys(dependencies || {}).filter(
-    d => !whiteListedModules.includes(d)
-  )
-]
+// const externals = [
+//   ...Object.keys(devDependencies || {}),
+//   ...Object.keys(dependencies || {}).filter(
+//     d => !whiteListedModules.includes(d)
+//   )
+// ]
 
 let mainConfig = {
   entry: {
     main: path.join(__dirname, '../src/main/index.ts')
   },
-  externals,
+  // externals,
   module: {
     rules: [
       {
@@ -57,7 +58,7 @@ let mainConfig = {
     extensions: ['.js', '.ts', '.json', '.node']
   },
   target: 'electron-main'
-}
+};
 
 /**
  * Adjust mainConfig for development settings
@@ -67,7 +68,7 @@ if (process.env.NODE_ENV !== 'production') {
     new webpack.DefinePlugin({
       __static: `"${path.join(__dirname, '../static').replace(/\\/g, '\\\\')}"`
     })
-  )
+  );
 }
 
 /**
@@ -77,12 +78,12 @@ if (process.env.NODE_ENV === 'production') {
   mainConfig.optimization = {
     minimize: true,
     minimizer: [new TerserPlugin()]
-  }
+  };
   mainConfig.plugins.push(
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     })
-  )
+  );
 }
 
-module.exports = mainConfig
+module.exports = mainConfig;

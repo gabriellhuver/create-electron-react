@@ -11,14 +11,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-/**
- * List of node_modules to include in webpack bundle
- *
- * Required for specific packages like Vue UI libraries
- * that provide pure *.vue files that need compiling
- * https://simulatedgreg.gitbooks.io/electron-vue/content/en/webpack-configurations.html#white-listing-externals
- */
-const whiteListedModules = ['react', 'react-dom'];
+// https://github.com/zenghongtu/create-electron-react/issues/3
+// const whiteListedModules = ['react', 'react-dom'];
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
@@ -29,11 +23,11 @@ let rendererConfig = {
   entry: {
     renderer: path.join(__dirname, '../src/renderer/index.jsx')
   },
-  externals: [
-    ...Object.keys(dependencies || {}).filter(
-      d => !whiteListedModules.includes(d)
-    )
-  ],
+  // externals: [
+  //   ...Object.keys(dependencies || {}).filter(
+  //     d => !whiteListedModules.includes(d)
+  //   )
+  // ],
   module: {
     rules: [
       {
