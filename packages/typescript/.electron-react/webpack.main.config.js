@@ -3,7 +3,6 @@
 process.env.BABEL_ENV = 'main';
 
 const path = require('path');
-const { dependencies, devDependencies } = require('../package.json');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
