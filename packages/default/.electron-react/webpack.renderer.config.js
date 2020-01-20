@@ -14,7 +14,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // https://github.com/zenghongtu/create-electron-react/issues/3
 // const whiteListedModules = ['react', 'react-dom'];
 
-const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
 const isNotProd = process.env.NODE_ENV !== 'production';
 

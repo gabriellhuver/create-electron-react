@@ -3,7 +3,6 @@
 process.env.BABEL_ENV = 'renderer';
 
 const path = require('path');
-const { dependencies } = require('../package.json');
 const webpack = require('webpack');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -16,9 +15,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // https://github.com/zenghongtu/create-electron-react/issues/3
 // const whiteListedModules = ['react', 'react-dom'];
 
-const isDev = process.env.NODE_ENV === 'development';
 const isProd = process.env.NODE_ENV === 'production';
 const isNotProd = process.env.NODE_ENV !== 'production';
+const rendererPath = path.resolve('src/renderer');
 
 let rendererConfig = {
   devtool: '#cheap-module-eval-source-map',
@@ -39,7 +38,7 @@ let rendererConfig = {
           'css-loader',
           'sass-loader'
         ],
-        include: /src\/renderer/
+        include: [rendererPath]
       },
       {
         test: /\.sass$/,
@@ -48,7 +47,7 @@ let rendererConfig = {
           'css-loader',
           'sass-loader?indentedSyntax'
         ],
-        include: /src\/renderer/
+        include: [rendererPath]
       },
       {
         test: /\.less$/,
@@ -57,7 +56,7 @@ let rendererConfig = {
           'css-loader',
           'less-loader'
         ],
-        include: /src\/renderer/
+        include: [rendererPath]
       },
       {
         test: /\.css$/,
@@ -65,7 +64,7 @@ let rendererConfig = {
           isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader'
         ],
-        include: /src\/renderer/
+        include: [rendererPath]
       },
       {
         test: /\.(js|jsx|ts|tsx)$/,
